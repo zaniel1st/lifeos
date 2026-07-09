@@ -1,8 +1,13 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tsconfigPaths from 'vite-tsconfig-paths'
+import { URL, fileURLToPath } from 'url'
 
 export default defineConfig({
-  plugins: [react(), tsconfigPaths()],
-  base: '/lifeos/', // ◄ Add this line here (make sure it matches your repo name)
+  plugins: [react()],
+  base: '/lifeos/',
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
 })
